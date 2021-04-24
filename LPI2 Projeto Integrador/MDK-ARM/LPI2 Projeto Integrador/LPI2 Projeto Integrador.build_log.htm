@@ -27,111 +27,13 @@ Project File Date:  04/24/2021
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'LPI2 Projeto Integrador'
-assembling startup_stm32f767xx.s...
-compiling stm32f7xx_hal_flash_ex.c...
-compiling stm32f7xx_hal_adc.c...
-compiling stm32f7xx_hal_gpio.c...
-compiling stm32f7xx_hal_rcc.c...
-compiling stm32f7xx_hal_dma.c...
 compiling main.c...
-../Core/Src/main.c(25): error:  #5: cannot open source input file "adc.h": No such file or directory
-  #include "adc.h"
-../Core/Src/main.c: 0 warnings, 1 error
-compiling stm32f7xx_hal_flash.c...
-compiling stm32f7xx_hal_msp.c...
-compiling stm32f7xx_it.c...
-compiling stm32f7xx_hal_rcc_ex.c...
-compiling stm32f7xx_hal_adc_ex.c...
-compiling stm32f7xx_hal_pwr_ex.c...
-compiling stm32f7xx_hal_i2c_ex.c...
-compiling stm32f7xx_hal.c...
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #77-D: this declaration has no storage class or type specifier
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #65: expected a ";"
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(56): warning:  #12-D: parsing restarts here after previous syntax error
-  } HAL_TickFreqTypeDef;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(201): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  extern HAL_TickFreqTypeDef uwTickFreq;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(214): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq);
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(215): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_TickFreqTypeDef HAL_GetTickFreq(void);
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c(76): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_TickFreqTypeDef uwTickFreq = HAL_TICK_FREQ_DEFAULT;  /* 1KHz */
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c(76): error:  #20: identifier "HAL_TICK_FREQ_DEFAULT" is undefined
-  HAL_TickFreqTypeDef uwTickFreq = HAL_TICK_FREQ_DEFAULT;  /* 1KHz */
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c(319): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq)
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c(322): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-    HAL_TickFreqTypeDef prevTickFreq;
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c(351): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_TickFreqTypeDef HAL_GetTickFreq(void)
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c: 1 warning, 10 errors
-compiling stm32f7xx_hal_pwr.c...
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #77-D: this declaration has no storage class or type specifier
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #65: expected a ";"
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(56): warning:  #12-D: parsing restarts here after previous syntax error
-  } HAL_TickFreqTypeDef;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(201): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  extern HAL_TickFreqTypeDef uwTickFreq;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(214): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq);
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(215): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_TickFreqTypeDef HAL_GetTickFreq(void);
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c: 1 warning, 5 errors
-compiling stm32f7xx_hal_exti.c...
-compiling stm32f7xx_hal_dma_ex.c...
-compiling system_stm32f7xx.c...
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #77-D: this declaration has no storage class or type specifier
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #65: expected a ";"
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(56): warning:  #12-D: parsing restarts here after previous syntax error
-  } HAL_TickFreqTypeDef;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(201): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  extern HAL_TickFreqTypeDef uwTickFreq;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(214): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq);
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(215): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_TickFreqTypeDef HAL_GetTickFreq(void);
-../Core/Src/system_stm32f7xx.c: 1 warning, 5 errors
-compiling stm32f7xx_hal_tim_ex.c...
-compiling stm32f7xx_hal_i2c.c...
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #77-D: this declaration has no storage class or type specifier
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #65: expected a ";"
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(56): warning:  #12-D: parsing restarts here after previous syntax error
-  } HAL_TickFreqTypeDef;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(201): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  extern HAL_TickFreqTypeDef uwTickFreq;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(214): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq);
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(215): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_TickFreqTypeDef HAL_GetTickFreq(void);
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c: 1 warning, 5 errors
-compiling stm32f7xx_hal_cortex.c...
-../Core/Inc/stm32f7xx_hal_conf.h(361): warning:  #9-D: nested comment is not allowed
-  #endif /* HAL_IWDG_MODULE_ENABLED */
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c: 1 warning, 0 errors
-compiling stm32f7xx_hal_tim.c...
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #77-D: this declaration has no storage class or type specifier
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Core/Inc/stm32f7xx_hal_conf.h(481): error:  #65: expected a ";"
-  * (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(56): warning:  #12-D: parsing restarts here after previous syntax error
-  } HAL_TickFreqTypeDef;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(201): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  extern HAL_TickFreqTypeDef uwTickFreq;
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(214): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_StatusTypeDef HAL_SetTickFreq(HAL_TickFreqTypeDef Freq);
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h(215): error:  #20: identifier "HAL_TickFreqTypeDef" is undefined
-  HAL_TickFreqTypeDef HAL_GetTickFreq(void);
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.c: 1 warning, 5 errors
-"LPI2 Projeto Integrador\LPI2 Projeto Integrador.axf" - 31 Error(s), 6 Warning(s).
+../Core/Src/main.c(104): error:  #20: identifier "hadc2" is undefined
+  		ADC_Port sensor3={&hadc2, GPIO_PIN_8};
+../Core/Src/main.c(107): warning:  #223-D: function "analogRead" declared implicitly
+  		uint16_t valor1=analogRead(sensor1);
+../Core/Src/main.c: 1 warning, 1 error
+"LPI2 Projeto Integrador\LPI2 Projeto Integrador.axf" - 1 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -156,7 +58,7 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.4.0
       Include file:  CMSIS\Core\Include\tz_context.h
 Target not created.
-Build Time Elapsed:  00:00:42
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

@@ -117,6 +117,28 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 
 /* USER CODE BEGIN 1 */
 
+
+void analogPinConfig(ADC_Port port){
+	ADC_ChannelConfTypeDef sConfig = {0};
+	sConfig.Channel = port.ADC_Pin;
+  sConfig.Rank = ADC_REGULAR_RANK_1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(port.adcHandle, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }	
+}
+
+uint16_t analogRead(ADC_Port port){
+	analogPinConfig(port);
+	HAL_ADC_Start(port.adcHandle);
+	if(HAL_ADC_PollForConversion(port.adcHandle, HAL_MAX_DELAY)== HAL_OK)
+		return HAL_ADC_GetValue(port.adcHandle);// 0V->0   3.3V->4095	
+	else
+		return 0;
+}
+
+
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

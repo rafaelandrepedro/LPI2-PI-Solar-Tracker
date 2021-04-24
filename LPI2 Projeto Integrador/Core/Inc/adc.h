@@ -34,7 +34,10 @@ extern "C" {
 extern ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN Private defines */
-
+typedef struct {
+	ADC_HandleTypeDef* adcHandle;
+	uint32_t ADC_Pin;
+}ADC_Port;
 /* USER CODE END Private defines */
 
 void MX_ADC1_Init(void);

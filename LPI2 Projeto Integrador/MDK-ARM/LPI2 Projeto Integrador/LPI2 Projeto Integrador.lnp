@@ -1,6 +1,9 @@
 --cpu Cortex-M7.fp.dp
 "lpi2 projeto integrador\startup_stm32f767xx.o"
 "lpi2 projeto integrador\main.o"
+"lpi2 projeto integrador\gpio.o"
+"lpi2 projeto integrador\adc.o"
+"lpi2 projeto integrador\tim.o"
 "lpi2 projeto integrador\stm32f7xx_it.o"
 "lpi2 projeto integrador\stm32f7xx_hal_msp.o"
 "lpi2 projeto integrador\stm32f7xx_hal_adc.o"
