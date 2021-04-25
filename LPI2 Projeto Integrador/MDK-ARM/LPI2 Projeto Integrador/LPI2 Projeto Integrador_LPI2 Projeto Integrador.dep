@@ -1,6 +1,6 @@
 Dependencies for Project 'LPI2 Projeto Integrador', Target 'LPI2 Projeto Integrador': (DO NOT MODIFY !)
 F (startup_stm32f767xx.s)(0x6085B82B)(--cpu Cortex-M7.fp.dp --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_LPI2_Projeto_Integrador-IC:\Users\0\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\0\AppData\Local\Arm\Packs\Keil\STM32F7xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include--pd "__UVISION_VERSION SETA 527" --pd "_RTE_ SETA 1" --pd "STM32F767xx SETA 1"--list startup_stm32f767xx.lst --xref -o "lpi2 projeto integrador\startup_stm32f767xx.o" --depend "lpi2 projeto integrador\startup_stm32f767xx.d")
-F (../Core/Src/main.c)(0x6085BB74)(--c99 -c --cpu Cortex-M7.fp.dp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_LPI2_Projeto_Integrador-IC:\Users\0\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\0\AppData\Local\Arm\Packs\Keil\STM32F7xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F767xx -DUSE_HAL_DRIVER -DSTM32F767xx-o "lpi2 projeto integrador\main.o" --omf_browse "lpi2 projeto integrador\main.crf" --depend "lpi2 projeto integrador\main.d")
+F (../Core/Src/main.c)(0x6085D420)(--c99 -c --cpu Cortex-M7.fp.dp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_LPI2_Projeto_Integrador-IC:\Users\0\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\0\AppData\Local\Arm\Packs\Keil\STM32F7xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F767xx -DUSE_HAL_DRIVER -DSTM32F767xx-o "lpi2 projeto integrador\main.o" --omf_browse "lpi2 projeto integrador\main.crf" --depend "lpi2 projeto integrador\main.d")
 I (../Core/Inc/main.h)(0x6085B829)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h)(0x60494D68)
 I (../Core/Inc/stm32f7xx_hal_conf.h)(0x6085B829)
@@ -35,7 +35,9 @@ I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h)(0x60494D69)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h)(0x60494D69)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h)(0x60494D69)
 I (../Core/Inc/adc.h)(0x6085BB74)
+I (../Core/Inc/pwm.h)(0x6085D466)
 I (../Core/Inc/tim.h)(0x6085B828)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5E8E9F32)
 I (../Core/Inc/gpio.h)(0x6085B827)
 F (../Core/Src/gpio.c)(0x6085B827)(--c99 -c --cpu Cortex-M7.fp.dp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_LPI2_Projeto_Integrador-IC:\Users\0\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\0\AppData\Local\Arm\Packs\Keil\STM32F7xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F767xx -DUSE_HAL_DRIVER -DSTM32F767xx-o "lpi2 projeto integrador\gpio.o" --omf_browse "lpi2 projeto integrador\gpio.crf" --depend "lpi2 projeto integrador\gpio.d")
 I (../Core/Inc/gpio.h)(0x6085B827)
@@ -211,8 +213,8 @@ I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h)(0x60494D68)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h)(0x60494D69)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h)(0x60494D69)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h)(0x60494D69)
-F (.\pwm.c)(0x6085BC1B)(--c99 -c --cpu Cortex-M7.fp.dp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_LPI2_Projeto_Integrador-IC:\Users\0\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\0\AppData\Local\Arm\Packs\Keil\STM32F7xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F767xx -DUSE_HAL_DRIVER -DSTM32F767xx-o "lpi2 projeto integrador\pwm.o" --omf_browse "lpi2 projeto integrador\pwm.crf" --depend "lpi2 projeto integrador\pwm.d")
-I (pwm.h)(0x6085BB93)
+F (..\Core\Src\pwm.c)(0x6085D2FD)(--c99 -c --cpu Cortex-M7.fp.dp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_LPI2_Projeto_Integrador-IC:\Users\0\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\0\AppData\Local\Arm\Packs\Keil\STM32F7xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F767xx -DUSE_HAL_DRIVER -DSTM32F767xx-o "lpi2 projeto integrador\pwm.o" --omf_browse "lpi2 projeto integrador\pwm.crf" --depend "lpi2 projeto integrador\pwm.d")
+I (../Core/Inc/pwm.h)(0x6085D466)
 I (../Core/Inc/tim.h)(0x6085B828)
 I (../Core/Inc/main.h)(0x6085B829)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h)(0x60494D68)
@@ -247,6 +249,7 @@ I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h)(0x60494D68)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h)(0x60494D69)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h)(0x60494D69)
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h)(0x60494D69)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5E8E9F32)
 F (../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c)(0x60494D69)(--c99 -c --cpu Cortex-M7.fp.dp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc -I ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_LPI2_Projeto_Integrador-IC:\Users\0\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\0\AppData\Local\Arm\Packs\Keil\STM32F7xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F767xx -DUSE_HAL_DRIVER -DSTM32F767xx-o "lpi2 projeto integrador\stm32f7xx_hal_adc.o" --omf_browse "lpi2 projeto integrador\stm32f7xx_hal_adc.crf" --depend "lpi2 projeto integrador\stm32f7xx_hal_adc.d")
 I (../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h)(0x60494D68)
 I (../Core/Inc/stm32f7xx_hal_conf.h)(0x6085B829)

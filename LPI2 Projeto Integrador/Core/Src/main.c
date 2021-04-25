@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "pwm.h"
 #include "tim.h"
 #include "gpio.h"
 
@@ -113,6 +114,34 @@ int main(void)
 		
 		uint16_t valor3=analogRead(sensor3);
 		uint16_t valor4=analogRead(sensor4);
+		
+		
+		
+		
+		PWM_Port motor1={&htim1, TIM_CHANNEL_3};
+		PWM_Port motor2={&htim1, TIM_CHANNEL_4};
+		
+		PWMDutyCycle(motor1, 60);			//dutycycle 60%
+		PWMDutyCycle(motor2, 30);			//dutycycle 30%
+		
+		
+		//motor com dutycycle apenas positivo
+		
+		PWM_Port motorA={&htim1, TIM_CHANNEL_3};
+		
+		
+		PWMDutyCycle(motorA, 60);			//dutycycle 60%
+		
+		//motor com dutycycle positivo/negativo
+		
+		PWM_Port pino1={&htim1, TIM_CHANNEL_3};
+		GPIO_Port pino2={GPIOA_BASE, GPIO_PIN_0};
+		
+		PWM_Bus motorB={pino1, pino2};
+		
+		
+		PWMSignedDutyCycle(motorB, 30);			//dutycycle 30% sentido positivo
+		PWMSignedDutyCycle(motorB, -70);			//dutycycle 70% sentido negativo
 		
 		
 		

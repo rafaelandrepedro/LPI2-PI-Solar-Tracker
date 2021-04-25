@@ -425,7 +425,7 @@
             <File>
               <FileName>pwm.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\pwm.c</FilePath>
+              <FilePath>..\Core\Src\pwm.c</FilePath>
             </File>
           </Files>
         </Group>
