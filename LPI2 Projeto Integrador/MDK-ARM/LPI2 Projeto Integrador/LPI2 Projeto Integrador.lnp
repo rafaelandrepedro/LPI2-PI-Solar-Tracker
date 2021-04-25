@@ -6,6 +6,7 @@
 "lpi2 projeto integrador\tim.o"
 "lpi2 projeto integrador\stm32f7xx_it.o"
 "lpi2 projeto integrador\stm32f7xx_hal_msp.o"
+"lpi2 projeto integrador\pwm.o"
 "lpi2 projeto integrador\stm32f7xx_hal_adc.o"
 "lpi2 projeto integrador\stm32f7xx_hal_adc_ex.o"
 "lpi2 projeto integrador\stm32f7xx_hal_rcc.o"

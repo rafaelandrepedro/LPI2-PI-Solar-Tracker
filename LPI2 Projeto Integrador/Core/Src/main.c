@@ -89,8 +89,12 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC1_Init();
   MX_TIM6_Init();
+  MX_ADC2_Init();
+  MX_ADC3_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -109,6 +113,8 @@ int main(void)
 		
 		uint16_t valor3=analogRead(sensor3);
 		uint16_t valor4=analogRead(sensor4);
+		
+		
 		
 		
     /* USER CODE END WHILE */
