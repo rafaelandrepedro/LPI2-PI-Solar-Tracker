@@ -2,6 +2,9 @@
 #define PWM_H
 #include "tim.h"
 #include <stdlib.h>
+
+#define PIN_GND (GPIO_Port){0,0}
+
 typedef struct {
 	TIM_HandleTypeDef * timHandle;
 	uint32_t PWM_Pin;
@@ -20,6 +23,5 @@ typedef struct {
 
 
 void PWMChannelConfig(PWM_Port port);
-void PWMDutyCycle(PWM_Port port, uint8_t dutyCycle);
-void PWMSignedDutyCycle(PWM_Bus bus, int8_t dutyCycle);
+void PWMDutyCycle(PWM_Bus port, int8_t dutyCycle);
 #endif
