@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F767xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;        ../Drivers/STM32F7xx_HAL_Driver/Inc;        ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy;        ../Drivers/CMSIS/Device/ST/STM32F7xx/Include;        ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;          ../Drivers/STM32F7xx_HAL_Driver/Inc;          ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy;          ../Drivers/CMSIS/Device/ST/STM32F7xx/Include;          ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,6 +393,11 @@
           <GroupName>Application/User/Core</GroupName>
           <Files>
             <File>
+              <FileName>pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\pwm.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -423,9 +428,9 @@
               <FilePath>../Core/Src/stm32f7xx_hal_msp.c</FilePath>
             </File>
             <File>
-              <FileName>pwm.c</FileName>
+              <FileName>encoder.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Core\Src\pwm.c</FilePath>
+              <FilePath>.\encoder.c</FilePath>
             </File>
           </Files>
         </Group>

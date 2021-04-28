@@ -28,7 +28,8 @@
 /* Configure GPIO                                                             */
 /*----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
-
+static EXTICallback_Instance EXTICallbacks[MAX_EXTI_INSTANCES];
+static int EXTICallbackCounter=0;
 /* USER CODE END 1 */
 
 /** Configure pins as
@@ -146,6 +147,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(USB_VBUS_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PG9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
   /*Configure GPIO pins : PGPin PGPin */
   GPIO_InitStruct.Pin = RMII_TX_EN_Pin|RMII_TXD0_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -155,13 +162,28 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 1, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 
 /* USER CODE BEGIN 2 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	for(int i=0;i<MAX_EXTI_INSTANCES;i++)
+		if(GPIO_Pin == EXTICallbacks[i].port.GPIO_Pin)
+			EXTICallbacks[i].function();
+}
 
+void EXTICallback(GPIO_Port port, void (*function)(void)){
+	EXTICallback_Instance newInstance;
+	newInstance.port=port;
+	newInstance.function=function;
+	EXTICallbacks[EXTICallbackCounter]=newInstance;
+	EXTICallbackCounter++;
+}
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

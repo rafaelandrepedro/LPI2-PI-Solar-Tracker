@@ -1,6 +1,7 @@
 #ifndef PWM_H
 #define PWM_H
 #include "tim.h"
+#include "gpio.h"
 #include <stdlib.h>
 
 #define PIN_GND (GPIO_Port){0,0}
@@ -9,11 +10,6 @@ typedef struct {
 	TIM_HandleTypeDef * timHandle;
 	uint32_t PWM_Pin;
 }PWM_Port;
-
-typedef struct {
-	uint32_t GPIOx;
-	uint32_t GPIO_Pin;
-}GPIO_Port;
 
 typedef struct {
 	PWM_Port pwm_Port;

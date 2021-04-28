@@ -34,7 +34,7 @@ lpi2 projeto integrador\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ha
 lpi2 projeto integrador\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h
 lpi2 projeto integrador\main.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
 lpi2 projeto integrador\main.o: ../Core/Inc/adc.h
-lpi2 projeto integrador\main.o: ../Core/Inc/pwm.h
 lpi2 projeto integrador\main.o: ../Core/Inc/tim.h
-lpi2 projeto integrador\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 lpi2 projeto integrador\main.o: ../Core/Inc/gpio.h
+lpi2 projeto integrador\main.o: ../Core/Inc/pwm.h
+lpi2 projeto integrador\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
