@@ -38,3 +38,4 @@ lpi2 projeto integrador\main.o: ../Core/Inc/tim.h
 lpi2 projeto integrador\main.o: ../Core/Inc/gpio.h
 lpi2 projeto integrador\main.o: ../Core/Inc/pwm.h
 lpi2 projeto integrador\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+lpi2 projeto integrador\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

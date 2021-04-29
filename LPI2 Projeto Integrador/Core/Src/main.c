@@ -23,6 +23,7 @@
 #include "tim.h"
 #include "gpio.h"
 #include "pwm.h"
+#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -57,7 +58,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void none(){}
 /* USER CODE END 0 */
 
 /**
@@ -93,9 +94,21 @@ int main(void)
   MX_ADC2_Init();
   MX_ADC3_Init();
   MX_TIM1_Init();
-  /* USER CODE BEGIN 2 */
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+  /* USER CODE BEGIN 2 */	
+
+		//motor com dutycycle positivo/negativo
+			
+			PWM_Port pino1B={&htim1, TIM_CHANNEL_1};
+			GPIO_Port pino2B={GPIOE_BASE, GPIO_PIN_15};
+			
+			PWM_Bus motorB={pino1B, pino2B};
+			
+			
+			PWMDutyCycle(motorB, 30);			//dutycycle 30% sentido positivo
+			PWMDutyCycle(motorB, -70);			//dutycycle 70% sentido negativo
+			
+			ADC_Port sensor1={&hadc1, GPIO_PIN_0};
+			analogPinConfig(sensor1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,39 +116,47 @@ int main(void)
   while (1)
   {
 		
-		ADC_Port sensor1={&hadc1, GPIO_PIN_0};
-		ADC_Port sensor2={&hadc1, GPIO_PIN_1};
-		
-		ADC_Port sensor3={&hadc2, GPIO_PIN_8};
-		ADC_Port sensor4={&hadc2, GPIO_PIN_9};
-		
-		uint16_t valor1=analogRead(sensor1);
-		uint16_t valor2=analogRead(sensor2);
-		
-		uint16_t valor3=analogRead(sensor3);
-		uint16_t valor4=analogRead(sensor4);
 		
 		
-		//motor com dutycycle apenas positivo
+		//ADC_Port sensor2={&hadc1, GPIO_PIN_1};
 		
-			PWM_Port pino1A={&htim1, TIM_CHANNEL_3};
-			
-			PWM_Bus motorA={pino1A, PIN_GND};
-			
-			
-			PWMDutyCycle(motorA, 60);			//dutycycle 60%
+		//ADC_Port sensor3={&hadc2, GPIO_PIN_8};
+		//ADC_Port sensor4={&hadc2, GPIO_PIN_9};
 		
-		//motor com dutycycle positivo/negativo
-			
-			PWM_Port pino1B={&htim1, TIM_CHANNEL_3};
-			GPIO_Port pino2B={GPIOA_BASE, GPIO_PIN_0};
-			
-			PWM_Bus motorB={pino1B, pino2B};
+		//uint16_t valor1=analogRead(sensor1);
+		//uint16_t valor2=analogRead(sensor2);
+		
+		//uint16_t valor3=analogRead(sensor3);
+		//uint16_t valor4=analogRead(sensor4);
+		
+		HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+    uint16_t valor1 = HAL_ADC_GetValue(&hadc1);
+		
+		PWMDutyCycle(motorB, (float)valor1/40.96);
+		
+		HAL_Delay(1000);
 			
 			
-			PWMDutyCycle(motorB, 30);			//dutycycle 30% sentido positivo
-			PWMDutyCycle(motorB, -70);			//dutycycle 70% sentido negativo
-		
+			/*
+			#define REVOLUCAO 16		//encoder com 16 pinos por revolução (datasheet)
+			
+			GPIO_Port pinoCLK={GPIOG_BASE, GPIO_PIN_9};		//pino A do encoder
+			GPIO_Port pinoDT={GPIOG_BASE, GPIO_PIN_10};		//pino B do encoder
+			
+			Encoder_Bus encoderPins={pinoCLK, pinoDT};		//configuração do pinout do encoder
+			
+			Encoder encoder={encoderPins, RESET_POSITION, REVOLUCAO};		//inicialização do encoder
+			
+			EXTIConfig(pinoCLK);													//configuração da EXTI
+			EXTICallback(pinoCLK, none);			//ordenar a leitura do passo
+			
+			while(1){
+				printf("%d\n\r", encoder.pos);		//imprimir a posição do eixo do encoder
+			}
+			*/
+			
+			
 			
 			
 		

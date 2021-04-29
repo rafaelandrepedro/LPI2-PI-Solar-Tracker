@@ -293,6 +293,19 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 }
 
 /* USER CODE BEGIN 1 */
+uint16_t adcValues[3];
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
+	if(hadc->Instance == ADC1){
+		adcValues[0]=HAL_ADC_GetValue(&hadc1);
+	}
+	if(hadc->Instance == ADC2){
+		adcValues[1]=HAL_ADC_GetValue(&hadc2);
+	}
+	if(hadc->Instance == ADC3){
+		adcValues[2]=HAL_ADC_GetValue(&hadc3);
+	}
+}
 
 
 void analogPinConfig(ADC_Port port){
@@ -304,16 +317,20 @@ void analogPinConfig(ADC_Port port){
   {
     Error_Handler();
   }	
+	HAL_ADC_Start_IT(port.adcHandle);
 }
 
 uint16_t analogRead(ADC_Port port){
-	analogPinConfig(port);
-	HAL_ADC_Start(port.adcHandle);
-	if(HAL_ADC_PollForConversion(port.adcHandle, HAL_MAX_DELAY)== HAL_OK)
-		return HAL_ADC_GetValue(port.adcHandle);// 0V->0   3.3V->4095	
-	else
-		return 0;
+	if(port.adcHandle==&hadc1)
+		return adcValues[0];
+	if(port.adcHandle==&hadc2)
+		return adcValues[1];
+	if(port.adcHandle==&hadc3)
+		return adcValues[2];
+	return 0;
+	// 0V->0   3.3V->4095	
 }
+	
 
 
 /* USER CODE END 1 */
