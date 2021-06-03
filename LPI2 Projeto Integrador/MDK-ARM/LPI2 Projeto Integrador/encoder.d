@@ -1,4 +1,5 @@
 lpi2 projeto integrador\encoder.o: encoder.c
+lpi2 projeto integrador\encoder.o: ../Core/Inc/encoder.h
 lpi2 projeto integrador\encoder.o: ../Core/Inc/gpio.h
 lpi2 projeto integrador\encoder.o: ../Core/Inc/main.h
 lpi2 projeto integrador\encoder.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h

@@ -1,50 +1,58 @@
-#include "gpio.h"
-void EXTIConfig(GPIO_Port port){				//W.I.P.
-	GPIO_InitTypeDef GPIO_InitStruct = {0};
-	GPIO_InitStruct.Pin = port.GPIO_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init((GPIO_TypeDef*)(port.GPIOx), &GPIO_InitStruct);
-	
-	IRQn_Type interruptLine;
-	switch(port.GPIO_Pin){
-		case GPIO_PIN_0:
-			interruptLine=EXTI0_IRQn;
-			break;
-		case GPIO_PIN_1:
-			interruptLine=EXTI1_IRQn;
-			break;
-		case GPIO_PIN_2:
-			interruptLine=EXTI2_IRQn;
-			break;
-		case GPIO_PIN_3:
-			interruptLine=EXTI3_IRQn;
-			break;
-		case GPIO_PIN_4:
-			interruptLine=EXTI4_IRQn;
-			break;
-		case GPIO_PIN_5:
-		case GPIO_PIN_6:
-		case GPIO_PIN_7:
-		case GPIO_PIN_8:
-		case GPIO_PIN_9:
-			interruptLine=EXTI9_5_IRQn;
-			break;
-		case GPIO_PIN_10:
-		case GPIO_PIN_11:
-		case GPIO_PIN_12:
-		case GPIO_PIN_13:
-		case GPIO_PIN_14:
-		case GPIO_PIN_15:
-			interruptLine=EXTI15_10_IRQn;
+#include "encoder.h"
+
+//FOR MAIN
+	/*
+		Init for the encoder
+		MUST be called each time an object is created/reseted
+			encoder - encoder address
+			CLK - pin A of the encoder (MUST be the same used in the EXTI)
+			DT - pin B of the encoder
+			steps - number of transitions/revolution
+	*/
+	void encoderInit(Encoder_t* encoder, GPIO_Port CLK, GPIO_Port DT, int steps){
+		encoder->CLK=CLK;
+		encoder->DT=DT;
+		encoder->steps=steps;
+		encoder->pos=0;
+		encoder->lastRegistedPos=0;
+		encoder->speed=0.0;
+	}
+
+//FOR EXTI
+	/*
+		Update of the position
+		MUST be called every time the EXTI occurs (rise and falling edge)
+			encoder - encoder address
+	*/
+	void updatePosition(Encoder_t* encoder){
+		if(HAL_GPIO_ReadPin((GPIO_TypeDef *)(encoder->CLK.GPIOx), encoder->CLK.GPIO_Pin)==HAL_GPIO_ReadPin((GPIO_TypeDef *)(encoder->DT.GPIOx), encoder->CLK.GPIO_Pin))
+			encoder->pos++;
+		else
+			encoder->pos--;
 	}
 	
+//FOR TIM
+	/*
+		Update of the speed
+		MUST be called every time the EXTI occurs (rise and falling edge)
+			encoder - encoder address
+	*/
+	void updateSpeed(Encoder_t* encoder, float updateRate){
+		encoder->speed=((float)(encoder->pos-encoder->lastRegistedPos)/(float)(encoder->steps))/(float)updateRate;
+	}
 	
-	HAL_NVIC_SetPriority(interruptLine, 1, 0);
-  HAL_NVIC_EnableIRQ(interruptLine);
-}
+//FOR ANYWHERE
+	int readPosition(Encoder_t* encoder){
+		int pos=encoder->pos;
+		pos=pos%encoder->steps;
+		if(pos<0)
+			pos+=encoder->steps;
+		return pos;
+	}
 	
-	//
+	int readSpeed(Encoder_t* encoder){
+		return encoder->speed;
+	}
 
 
 
@@ -54,7 +62,13 @@ void EXTIConfig(GPIO_Port port){				//W.I.P.
 
 
 
-	
 
-	
-	
+
+
+
+
+
+
+
+
+

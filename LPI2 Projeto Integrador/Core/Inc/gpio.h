@@ -39,10 +39,6 @@ typedef struct {
 	uint32_t GPIO_Pin;
 }GPIO_Port;
 
-typedef struct {
-	GPIO_Port port;
-	void (*function)(void);
-}EXTICallback_Instance;
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);

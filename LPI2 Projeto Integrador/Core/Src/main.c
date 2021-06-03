@@ -22,7 +22,6 @@
 #include "adc.h"
 #include "tim.h"
 #include "gpio.h"
-#include "pwm.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -36,6 +35,12 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+	GPIO_Port CLK={GPIOG_BASE, GPIO_PIN_9};
+	GPIO_Port DT={GPIOE_BASE, GPIO_PIN_8};
+		
+	Encoder_t encoder;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -93,6 +98,7 @@ int main(void)
   MX_ADC2_Init();
   MX_ADC3_Init();
   MX_TIM1_Init();
+  MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
@@ -100,45 +106,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	
+	
+	encoderInit(&encoder, CLK, DT, 32);
+	
   while (1)
   {
 		
-		ADC_Port sensor1={&hadc1, GPIO_PIN_0};
-		ADC_Port sensor2={&hadc1, GPIO_PIN_1};
-		
-		ADC_Port sensor3={&hadc2, GPIO_PIN_8};
-		ADC_Port sensor4={&hadc2, GPIO_PIN_9};
-		
-		uint16_t valor1=analogRead(sensor1);
-		uint16_t valor2=analogRead(sensor2);
-		
-		uint16_t valor3=analogRead(sensor3);
-		uint16_t valor4=analogRead(sensor4);
-		
-		
-		//motor com dutycycle apenas positivo
-		
-			PWM_Port pino1A={&htim1, TIM_CHANNEL_3};
-			
-			PWM_Bus motorA={pino1A, PIN_GND};
-			
-			
-			PWMDutyCycle(motorA, 60);			//dutycycle 60%
-		
-		//motor com dutycycle positivo/negativo
-			
-			PWM_Port pino1B={&htim1, TIM_CHANNEL_3};
-			GPIO_Port pino2B={GPIOA_BASE, GPIO_PIN_0};
-			
-			PWM_Bus motorB={pino1B, pino2B};
-			
-			
-			PWMDutyCycle(motorB, 30);			//dutycycle 30% sentido positivo
-			PWMDutyCycle(motorB, -70);			//dutycycle 70% sentido negativo
-		
-			
-			
-		
+	readPosition(&encoder);
+	readSpeed(&encoder);
 		
     /* USER CODE END WHILE */
 
@@ -198,6 +174,45 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+
+void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
+{
+
+  if(tim_baseHandle->Instance==TIM6)
+  {
+  /* USER CODE BEGIN TIM6_MspDeInit 0 */
+
+  /* USER CODE END TIM6_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_TIM6_CLK_DISABLE();
+  /* USER CODE BEGIN TIM6_MspDeInit 1 */
+
+  /* USER CODE END TIM6_MspDeInit 1 */
+  }
+  else if(tim_baseHandle->Instance==TIM10)
+  {
+  /* USER CODE BEGIN TIM10_MspDeInit 0 */
+		
+		//1 milisegundo
+		updateSpeed(&encoder, 0.001);
+		
+  /* USER CODE END TIM10_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_TIM10_CLK_DISABLE();
+  /* USER CODE BEGIN TIM10_MspDeInit 1 */
+
+  /* USER CODE END TIM10_MspDeInit 1 */
+  }
+}
+
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+		if(GPIO_Pin == GPIO_PIN_9){
+			updatePosition(&encoder);
+		}
+}
+
 
 /* USER CODE END 4 */
 

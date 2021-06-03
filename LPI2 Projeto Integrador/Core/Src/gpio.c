@@ -28,8 +28,7 @@
 /* Configure GPIO                                                             */
 /*----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
-static EXTICallback_Instance EXTICallbacks[MAX_EXTI_INSTANCES];
-static int EXTICallbackCounter=0;
+
 /* USER CODE END 1 */
 
 /** Configure pins as
@@ -171,19 +170,7 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-	for(int i=0;i<MAX_EXTI_INSTANCES;i++)
-		if(GPIO_Pin == EXTICallbacks[i].port.GPIO_Pin)
-			EXTICallbacks[i].function();
-}
 
-void EXTICallback(GPIO_Port port, void (*function)(void)){
-	EXTICallback_Instance newInstance;
-	newInstance.port=port;
-	newInstance.function=function;
-	EXTICallbacks[EXTICallbackCounter]=newInstance;
-	EXTICallbackCounter++;
-}
 /* USER CODE END 2 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
