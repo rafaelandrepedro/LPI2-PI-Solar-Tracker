@@ -1,0 +1,28 @@
+O desenho inicial do produto foi feito num programa de desenho básico tendo sido um ponto de partida para o desenvolvimento de uma estrutura
+mecânica funcional e orientada ao material eletrico selecionado.
+
+Nesta primeira imagem temos a base da nossa estrutura.
+Dentro desta teremos as PCBs devidamente protegidas do exterior.
+Um orificio numa das faces da base permite o encaixe de uma entrada de alimentação.
+Na parte superior desta peça existem dois furos que atravessam a peça até ao seu interior.
+O maior permite o encaixe do motor enquanto que o menor permite a passagem de fios.
+
+Nesta segunda peça existe uma ranhura arredondada na parte inferior para o eixo do primeiro motor e uma ranhura mais longa para a passagem dos fios.
+Esta faz uma semicircunferência que permite uma rotação de 180º segundo o plano horizontal.
+Na face lateral da peça existe um buraco para o encaixe do motor e um furo para a passagem dos fios.
+
+Na terceira peça da nossa estrutura temos uma ranhura para o motor e para os fios como na peça anterior, mas a ranhura desta permite apenas 90º de rotação.
+desta parte sai um suporte em cruz que fixa o painel e permite a passagem dos fios até aos sensores localizados nas estremidades.
+
+A ultima peça é uma tampa de segurança que é colocada a proteger a camara da segunda e terceira peças.
+Esta, não só garante a proteção do utilizador, mas também facilita a manutenção do aparelho.
+
+
+A cabeamento do sistema parte da PCB na base (representada pelo rectângulo roxo).
+
+A linha vermelha representa o barramento que estabelece a ligação com os sensores.
+Este sobe através da peça 1 até à camara da peça 2, daqui conecta-seaté à camara da peça seguinte, sendo em seguida distribuida pelos diferentes ramos da peça de suporte do painel.
+
+A linha verde representa o barramento de alimentação do motor de rotação horizontal, e este sobe através do cilindro principal pelo furo mais largo indo de encontro ao motor.
+
+A linha azul representa o barramento de alimentação do motor de rotação vertical, este barramento sobe através do furo mais estreito até à camara da peça 2 onde encontrará os contactos do segundo motor.

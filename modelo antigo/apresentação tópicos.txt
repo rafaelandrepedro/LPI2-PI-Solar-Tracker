@@ -1,0 +1,40 @@
+Design inicial -> programa basico -> programa mais profissional
+
+{[slide]}
+
+4 peças
+1)
+Falar da base
+Falar do cilindro
+Indicar que as PCB estão na base da peça
+Indicar que existe uma entrada de alimentação
+2)
+ranhura do motor
+ranhura dos fios
+furo lateral do motor
+furo lateral dos fios
+
+{[slide]}
+
+3)
+ranhura do motor
+ranhura dos fios
+suporte em cruz -> segura o painel -> conecta os fios aos sensores
+4)
+tampa -> protege o utilizador -> facilita a manutenção
+
+{[slide]}
+
+PCB (a roxo)
+fio vermelho
+fio verde
+fio azul
+
+{[slide]}
+
+diagrama geral em prespetiva
+
+{[3 segundos de pausa]}
+
+
+
