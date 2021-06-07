@@ -36,10 +36,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-	GPIO_Port CLK={GPIOG_BASE, GPIO_PIN_9};
-	GPIO_Port DT={GPIOE_BASE, GPIO_PIN_8};
-		
-	Encoder_t encoder;
+	
 
 /* USER CODE END PD */
 
@@ -106,14 +103,56 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	
+	//encoder motor horizontal
+	GPIO_Port CLK={GPIOG_BASE, GPIO_PIN_9};
+	GPIO_Port DT={GPIOE_BASE, GPIO_PIN_8};
+	Encoder_t encoder;
+	encoderInit(&encoder, CLK, DT, 1920*2);
 	
-	encoderInit(&encoder, CLK, DT, 32);
+	//sensores LDR
+	ADC_Port sensorCima(&hadc1, GPIO_PIN_0);
+	ADC_Port sensorBaixo(&hadc1, GPIO_PIN_1);
+	ADC_Port sensorEsq(&hadc1, GPIO_PIN_2);
+	ADC_Port sensorDir(&hadc1, GPIO_PIN_3);
 	
+	//motores
+	PWM_Port motorVertical={&tim1, TIM_CHANNEL_3};
+	PWM_Port motorHorizontal={&tim1, TIM_CHANNEL_4};
   while (1)
   {
 		
-	readPosition(&encoder);
-	readSpeed(&encoder);
+		uint16_t luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
+		uint16_t luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
+		
+		if(luminusidadeVertical>5)
+			while(luminusidadeVertical>2){
+				PWMDutyCycle(motorVertical,-100);
+				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
+			}
+			
+		if(luminusidadeVertical<5)
+			while(luminusidadeVertical<2){
+				PWMDutyCycle(motorVertical,100);
+				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
+			}
+			
+		if(luminusidadeHorizontal>5)
+			while(luminusidadeHorizontal>2){
+				PWMDutyCycle(motorHorizontal,-100);
+				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
+			}
+			
+		if(luminusidadeHorizontal>5)
+			while(luminusidadeHorizontal>2){
+				PWMDutyCycle(motorHorizontal,100);
+				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
+			}
+			
+			
+			
+			
+				readPosition(&encoder);
+				readSpeed(&encoder);
 		
     /* USER CODE END WHILE */
 
