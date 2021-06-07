@@ -34,12 +34,14 @@ extern "C" {
 /* USER CODE BEGIN Private defines */
 #define MAX_EXTI_INSTANCES 1<<2	
 
+	//conjunto de barramento de GPIO e pino de GPIO
 typedef struct {
-	uint32_t GPIOx;
-	uint32_t GPIO_Pin;
+	uint32_t GPIOx;			//[GPIOA_BASE;GPIOG_BASE]
+	uint32_t GPIO_Pin;	//[GPIO_PIN_0;GPIO_PIN_15]
 }GPIO_Port;
 
 /* USER CODE END Private defines */
+
 
 void MX_GPIO_Init(void);
 
