@@ -34,5 +34,7 @@ lpi2 projeto integrador\tim.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal
 lpi2 projeto integrador\tim.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h
 lpi2 projeto integrador\tim.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h
 lpi2 projeto integrador\tim.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h
+lpi2 projeto integrador\tim.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h
+lpi2 projeto integrador\tim.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
 lpi2 projeto integrador\tim.o: ../Core/Inc/encoder.h
 lpi2 projeto integrador\tim.o: ../Core/Inc/gpio.h
