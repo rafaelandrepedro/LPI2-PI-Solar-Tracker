@@ -26,7 +26,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "pwm.h"
+#include "encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,7 +38,10 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-	
+	//encoder motor horizontal
+	GPIO_Port CLK={GPIOG_BASE, GPIO_PIN_9};
+	GPIO_Port DT={GPIOE_BASE, GPIO_PIN_8};
+	Encoder_t encoder;
 
 /* USER CODE END PD */
 
@@ -104,22 +108,24 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	
 	//encoder motor horizontal
-	GPIO_Port CLK={GPIOG_BASE, GPIO_PIN_9};
-	GPIO_Port DT={GPIOE_BASE, GPIO_PIN_8};
-	Encoder_t encoder;
 	encoderInit(&encoder, CLK, DT, 1920*2);
 	
 	//sensores LDR
-	ADC_Port sensorCima(&hadc1, GPIO_PIN_0);
-	ADC_Port sensorBaixo(&hadc1, GPIO_PIN_1);
-	ADC_Port sensorEsq(&hadc1, GPIO_PIN_2);
-	ADC_Port sensorDir(&hadc1, GPIO_PIN_3);
+	ADC_Port sensorCima={&hadc1, GPIO_PIN_0};
+	ADC_Port sensorBaixo={&hadc1, GPIO_PIN_1};
+	ADC_Port sensorEsq={&hadc1, GPIO_PIN_2};
+	ADC_Port sensorDir={&hadc1, GPIO_PIN_3};
 	
 	//motores
-	PWM_Port motorVertical={&tim1, TIM_CHANNEL_3};
-	PWM_Port motorHorizontal={&tim1, TIM_CHANNEL_4};
+	PWM_Port MV={&htim1, TIM_CHANNEL_3};
+	PWM_Port MH={&htim1, TIM_CHANNEL_4};
+	
+	GPIO_Port refMV={GPIOA_BASE, GPIO_PIN_0};
+	GPIO_Port refMH={GPIOA_BASE, GPIO_PIN_1};
+	
+	PWM_Bus motorVertical={MV, refMV};
+	PWM_Bus motorHorizontal={MH, refMH};
   while (1)
   {
 		
@@ -172,7 +178,6 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-
   /** Configure the main internal regulator output voltage
   */
   __HAL_RCC_PWR_CLK_ENABLE();
