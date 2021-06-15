@@ -23,12 +23,13 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
-
+#include "parser.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "pwm.h"
 #include "encoder.h"
 #include "control.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,7 +55,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+char command[128];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -136,6 +137,23 @@ int main(void)
 		while(1){
 			valor=analogRead(sensorCima);
 			valor=analogRead(sensorCima);
+			moduloBluetooth(command); 
+			//receber//
+			if(receve_flag){
+			receve_flag = 0;
+			for (uint8_t i=0;i<(1<<7);i++){
+				if(Rx_Buffer[i]=='\0')
+					break;
+				command[i] = Rx_Buffer[i];
+			}
+			//parsing (dentro: execução, transmissão)//
+			parser(command);
+			//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
+		}
+			
+			
+			
+			
 		}
 		
 		proportionalControl(sensorBaixo, sensorCima, sensorEsq, sensorDir, motorHorizontal, motorVertical,LIMITE_INFERIOR_LUZ, LIMITE_SUPERIOR_LUZ, LIMITE_VELOCIDADE_MAXIMA);

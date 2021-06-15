@@ -43,7 +43,7 @@ void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN Prototypes */
 void init_UART3(void);
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart);
-void moduloBluetooth(void);
+void moduloBluetooth(char* message);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

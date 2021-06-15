@@ -138,7 +138,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart){
 	* @retval	byte read
   */
 
-void moduloBluetooth(void){
+void moduloBluetooth(char* message){
 		static int local_index = 0;
     static int out_index = 0;
 		static char onOff = 0;
