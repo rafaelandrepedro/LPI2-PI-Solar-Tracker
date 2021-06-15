@@ -28,6 +28,7 @@
 /* USER CODE BEGIN Includes */
 #include "pwm.h"
 #include "encoder.h"
+#include "control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -128,39 +129,16 @@ int main(void)
 	PWM_Bus motorHorizontal={MH, refMH};
   while (1)
   {
+		#define LIMITE_SUPERIOR_LUZ 5
+		#define LIMITE_INFERIOR_LUZ 2
+		#define LIMITE_VELOCIDADE_MAXIMA 6
+		volatile uint16_t valor;
+		while(1){
+			valor=analogRead(sensorCima);
+			valor=analogRead(sensorCima);
+		}
 		
-		uint16_t luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-		uint16_t luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-		
-		if(luminusidadeVertical>5)
-			while(luminusidadeVertical>2){
-				PWMDutyCycle(motorVertical,-100);
-				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-			}
-			
-		if(luminusidadeVertical<5)
-			while(luminusidadeVertical<2){
-				PWMDutyCycle(motorVertical,100);
-				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-			}
-			
-		if(luminusidadeHorizontal>5)
-			while(luminusidadeHorizontal>2){
-				PWMDutyCycle(motorHorizontal,-100);
-				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-			}
-			
-		if(luminusidadeHorizontal>5)
-			while(luminusidadeHorizontal>2){
-				PWMDutyCycle(motorHorizontal,100);
-				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-			}
-			
-			
-			
-			
-				readPosition(&encoder);
-				readSpeed(&encoder);
+		proportionalControl(sensorBaixo, sensorCima, sensorEsq, sensorDir, motorHorizontal, motorVertical,LIMITE_INFERIOR_LUZ, LIMITE_SUPERIOR_LUZ, LIMITE_VELOCIDADE_MAXIMA);
 		
     /* USER CODE END WHILE */
 

@@ -309,12 +309,13 @@ void analogPinConfig(ADC_Port port){
 uint16_t analogRead(ADC_Port port){
 	analogPinConfig(port);
 	HAL_ADC_Start(port.adcHandle);
-	if(HAL_ADC_PollForConversion(port.adcHandle, HAL_MAX_DELAY)== HAL_OK)
+	if(HAL_ADC_PollForConversion(port.adcHandle, HAL_MAX_DELAY)== HAL_OK){
 		return HAL_ADC_GetValue(port.adcHandle);// 0V->0   3.3V->4095	
-	else
+	}
+	else{
 		return 0;
+	}
 }
-
 
 /* USER CODE END 1 */
 

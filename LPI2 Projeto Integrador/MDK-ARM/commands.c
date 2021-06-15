@@ -23,6 +23,24 @@ void makePortPinOutput(uint32_t portAdress, uint32_t pinSetting){
   HAL_GPIO_Init((GPIO_TypeDef *)(portAdress*0x400+AHB1PERIPH_BASE), &GPIO_InitStruct);
 	
 }
+
+uint32_t getGPIOMode(uint8_t pinNum, uint32_t address){ //retorna o modo dos pinos
+	uint32_t* moder=(uint32_t*)(address*0x400+AHB1PERIPH_BASE);	//GPIOx_BASE
+	return ((*moder)&(3<<(2*pinNum)))>>(2*pinNum); // retorna o modo no pinNum
+}
+
+uint16_t scan(uint32_t mode, uint32_t address)   // Verifica o modo dos pinos
+{
+	uint16_t validPin;
+	for(uint8_t i; i<16 ;i++)
+	{
+		if((uint32_t)mode == (uint32_t)getGPIOMode(i,address)){
+		validPin |= 1<<i;		// coloca os pinos do modo a 1
+		}
+	}
+	return validPin;
+}
+
 /**
   * @brief  Writes digital outputs to output ports
   * @param	command		command string

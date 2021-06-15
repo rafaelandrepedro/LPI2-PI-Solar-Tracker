@@ -22,106 +22,16 @@ Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
 C:\Users\0\Documents\GitHub\LPI2-PI\LPI2-PI\LPI2 Projeto Integrador\MDK-ARM\LPI2 Projeto Integrador.uvprojx
-Project File Date:  06/09/2021
+Project File Date:  06/15/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'LPI2 Projeto Integrador'
-assembling startup_stm32f767xx.s...
-compiling main.c...
-../Core/Src/main.c(115): error:  #79: expected a type specifier
-  	ADC_Port sensorCima(&hadc1, GPIO_PIN_0);
-../Core/Src/main.c(115): error:  #79: expected a type specifier
-  	ADC_Port sensorCima(&hadc1, GPIO_PIN_0);
-../Core/Src/main.c(116): error:  #79: expected a type specifier
-  	ADC_Port sensorBaixo(&hadc1, GPIO_PIN_1);
-../Core/Src/main.c(116): error:  #79: expected a type specifier
-  	ADC_Port sensorBaixo(&hadc1, GPIO_PIN_1);
-../Core/Src/main.c(117): error:  #79: expected a type specifier
-  	ADC_Port sensorEsq(&hadc1, GPIO_PIN_2);
-../Core/Src/main.c(117): error:  #79: expected a type specifier
-  	ADC_Port sensorEsq(&hadc1, GPIO_PIN_2);
-../Core/Src/main.c(118): error:  #79: expected a type specifier
-  	ADC_Port sensorDir(&hadc1, GPIO_PIN_3);
-../Core/Src/main.c(118): error:  #79: expected a type specifier
-  	ADC_Port sensorDir(&hadc1, GPIO_PIN_3);
-../Core/Src/main.c(121): error:  #20: identifier "PWM_Port" is undefined
-  	PWM_Port motorVertical={&tim1, TIM_CHANNEL_3};
-../Core/Src/main.c(121): error:  #20: identifier "tim1" is undefined
-  	PWM_Port motorVertical={&tim1, TIM_CHANNEL_3};
-../Core/Src/main.c(122): error:  #20: identifier "PWM_Port" is undefined
-  	PWM_Port motorHorizontal={&tim1, TIM_CHANNEL_4};
-../Core/Src/main.c(126): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  		uint16_t luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-../Core/Src/main.c(126): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  		uint16_t luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-../Core/Src/main.c(127): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  		uint16_t luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-../Core/Src/main.c(127): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  		uint16_t luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-../Core/Src/main.c(131): warning:  #223-D: function "PWMDutyCycle" declared implicitly
-  				PWMDutyCycle(motorVertical,-100);
-../Core/Src/main.c(132): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-../Core/Src/main.c(132): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-../Core/Src/main.c(137): warning:  #223-D: function "PWMDutyCycle" declared implicitly
-  				PWMDutyCycle(motorVertical,100);
-../Core/Src/main.c(138): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-../Core/Src/main.c(138): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeVertical = analogRead(sensorCima) - analogRead(sensorBaixo);
-../Core/Src/main.c(143): warning:  #223-D: function "PWMDutyCycle" declared implicitly
-  				PWMDutyCycle(motorHorizontal,-100);
-../Core/Src/main.c(144): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-../Core/Src/main.c(144): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-../Core/Src/main.c(149): warning:  #223-D: function "PWMDutyCycle" declared implicitly
-  				PWMDutyCycle(motorHorizontal,100);
-../Core/Src/main.c(150): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-../Core/Src/main.c(150): error:  #167: argument of type "ADC_Port (*)(<error-type>, <error-type>)" is incompatible with parameter of type "ADC_Port"
-  				luminusidadeHorizontal = analogRead(sensorEsq) - analogRead(sensorDir);
-../Core/Src/main.c(245): error:  #20: identifier "encoder" is undefined
-  		updateSpeed(&encoder, 0.001);
-../Core/Src/main.c(259): error:  #20: identifier "encoder" is undefined
-  			updatePosition(&encoder);
-../Core/Src/main.c: 4 warnings, 25 errors
-compiling pwm.c...
-compiling encoder.c...
 compiling adc.c...
-compiling stm32f7xx_hal_adc.c...
-compiling gpio.c...
-compiling commands.c...
-commands.c(37): warning:  #223-D: function "scan" declared implicitly
-  	pinSetting &= scan(GPIO_MODE_OUTPUT_PP,portAdress); //verifica se a porta da para escrever
-commands.c: 1 warning, 0 errors
-compiling tim.c...
-compiling stm32f7xx_it.c...
-compiling stm32f7xx_hal_msp.c...
-compiling usart.c...
-compiling stm32f7xx_hal_dma.c...
-compiling stm32f7xx_hal_pwr_ex.c...
-compiling stm32f7xx_hal_gpio.c...
-compiling stm32f7xx_hal_flash.c...
-compiling stm32f7xx_hal_cortex.c...
-compiling stm32f7xx_hal_flash_ex.c...
-compiling stm32f7xx_hal_dma_ex.c...
-compiling stm32f7xx_hal_pwr.c...
-compiling stm32f7xx_hal_adc_ex.c...
-compiling stm32f7xx_hal_rcc.c...
-compiling stm32f7xx_hal_rcc_ex.c...
-compiling stm32f7xx_hal_exti.c...
-compiling stm32f7xx_hal_i2c_ex.c...
-compiling stm32f7xx_hal_uart_ex.c...
-compiling system_stm32f7xx.c...
-compiling stm32f7xx_hal.c...
-compiling stm32f7xx_hal_uart.c...
-compiling stm32f7xx_hal_tim_ex.c...
-compiling stm32f7xx_hal_i2c.c...
-compiling stm32f7xx_hal_tim.c...
-"LPI2 Projeto Integrador\LPI2 Projeto Integrador.axf" - 25 Error(s), 5 Warning(s).
+linking...
+Program Size: Code=11324 RO-data=624 RW-data=32 ZI-data=1888  
+FromELF: creating hex file...
+"LPI2 Projeto Integrador\LPI2 Projeto Integrador.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -145,8 +55,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.4.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Target not created.
-Build Time Elapsed:  00:01:03
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>
