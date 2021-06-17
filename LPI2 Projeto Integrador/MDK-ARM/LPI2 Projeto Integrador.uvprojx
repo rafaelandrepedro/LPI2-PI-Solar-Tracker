@@ -312,7 +312,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F767xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;                 ../Drivers/STM32F7xx_HAL_Driver/Inc;                 ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy;                 ../Drivers/CMSIS/Device/ST/STM32F7xx/Include;                 ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;                  ../Drivers/STM32F7xx_HAL_Driver/Inc;                  ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy;                  ../Drivers/CMSIS/Device/ST/STM32F7xx/Include;                  ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -403,6 +403,26 @@
               <FilePath>.\encoder.c</FilePath>
             </File>
             <File>
+              <FileName>commands.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\commands.c</FilePath>
+            </File>
+            <File>
+              <FileName>control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\control.c</FilePath>
+            </File>
+            <File>
+              <FileName>parser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parser.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/main.c</FilePath>
+            </File>
+            <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/gpio.c</FilePath>
@@ -423,11 +443,6 @@
               <FilePath>../Core/Src/usart.c</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/main.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f7xx_it.c</FilePath>
@@ -436,21 +451,6 @@
               <FileName>stm32f7xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f7xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>commands.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\commands.c</FilePath>
-            </File>
-            <File>
-              <FileName>control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\control.c</FilePath>
-            </File>
-            <File>
-              <FileName>parser.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\parser.c</FilePath>
             </File>
           </Files>
         </Group>

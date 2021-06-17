@@ -23,12 +23,13 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
-#include "parser.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "pwm.h"
 #include "encoder.h"
 #include "control.h"
+#include "parser.h"
 
 /* USER CODE END Includes */
 
@@ -115,7 +116,7 @@ int main(void)
 	
 	//sensores LDR
 	ADC_Port sensorCima={&hadc1, GPIO_PIN_0};
-	ADC_Port sensorBaixo={&hadc1, GPIO_PIN_1};
+	ADC_Port sensorBaixo={&hadc3, GPIO_PIN_14};
 	ADC_Port sensorEsq={&hadc1, GPIO_PIN_2};
 	ADC_Port sensorDir={&hadc1, GPIO_PIN_3};
 	
@@ -133,7 +134,16 @@ int main(void)
 		#define LIMITE_SUPERIOR_LUZ 5
 		#define LIMITE_INFERIOR_LUZ 2
 		#define LIMITE_VELOCIDADE_MAXIMA 6
-		volatile uint16_t valor;
+		
+		#define AUTOMATIC 1
+		
+		#define NOITE 100
+		
+		volatile uint16_t valor[2];
+		while(1){
+			valor[0]=analogRead(sensorCima);
+			valor[1]=analogRead(sensorBaixo);
+		}
 		moduloBluetooth(command); 
 		//receber//
 		if(receve_flag){
@@ -148,8 +158,12 @@ int main(void)
 		//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
 		}
 
-		if(control()){
+		if(control()==AUTOMATIC){
 			proportionalControl(sensorBaixo, sensorCima, sensorEsq, sensorDir, motorHorizontal, motorVertical,LIMITE_INFERIOR_LUZ, LIMITE_SUPERIOR_LUZ, LIMITE_VELOCIDADE_MAXIMA);
+		}
+		
+		if(averageLight(sensorBaixo, sensorCima, sensorEsq, sensorDir)<NOITE){
+			resetControl(encoder, motorHorizontal, LIMITE_INFERIOR_LUZ);
 		}
     /* USER CODE END WHILE */
 
@@ -167,6 +181,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+
   /** Configure the main internal regulator output voltage
   */
   __HAL_RCC_PWR_CLK_ENABLE();
@@ -217,35 +232,7 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 
-void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
-{
 
-  if(tim_baseHandle->Instance==TIM6)
-  {
-  /* USER CODE BEGIN TIM6_MspDeInit 0 */
-
-  /* USER CODE END TIM6_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_TIM6_CLK_DISABLE();
-  /* USER CODE BEGIN TIM6_MspDeInit 1 */
-
-  /* USER CODE END TIM6_MspDeInit 1 */
-  }
-  else if(tim_baseHandle->Instance==TIM10)
-  {
-  /* USER CODE BEGIN TIM10_MspDeInit 0 */
-		
-		//1 milisegundo
-		updateSpeed(&encoder, 0.001);
-		
-  /* USER CODE END TIM10_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_TIM10_CLK_DISABLE();
-  /* USER CODE BEGIN TIM10_MspDeInit 1 */
-
-  /* USER CODE END TIM10_MspDeInit 1 */
-  }
-}
 
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
