@@ -134,30 +134,23 @@ int main(void)
 		#define LIMITE_INFERIOR_LUZ 2
 		#define LIMITE_VELOCIDADE_MAXIMA 6
 		volatile uint16_t valor;
-		while(1){
-			valor=analogRead(sensorCima);
-			valor=analogRead(sensorCima);
-			moduloBluetooth(command); 
-			//receber//
-			if(receve_flag){
-			receve_flag = 0;
-			for (uint8_t i=0;i<(1<<7);i++){
-				if(Rx_Buffer[i]=='\0')
-					break;
-				command[i] = Rx_Buffer[i];
-			}
-			//parsing (dentro: execução, transmissão)//
-			parser(command);
-			//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
+		moduloBluetooth(command); 
+		//receber//
+		if(receve_flag){
+		receve_flag = 0;
+		for (uint8_t i=0;i<(1<<7);i++){
+			if(Rx_Buffer[i]=='\0')
+				break;
+			command[i] = Rx_Buffer[i];
 		}
-			
-			
-			
-			
+		//parsing (dentro: execução, transmissão)//
+		parser(command, motorVertical, motorHorizontal);
+		//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
 		}
-		
-		proportionalControl(sensorBaixo, sensorCima, sensorEsq, sensorDir, motorHorizontal, motorVertical,LIMITE_INFERIOR_LUZ, LIMITE_SUPERIOR_LUZ, LIMITE_VELOCIDADE_MAXIMA);
-		
+
+		if(control()){
+			proportionalControl(sensorBaixo, sensorCima, sensorEsq, sensorDir, motorHorizontal, motorVertical,LIMITE_INFERIOR_LUZ, LIMITE_SUPERIOR_LUZ, LIMITE_VELOCIDADE_MAXIMA);
+		}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

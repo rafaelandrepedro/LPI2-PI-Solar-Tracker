@@ -96,50 +96,58 @@ uint8_t numWords(char* command){
 	}
 }
 
+
+
 /**
   * @brief  Searches and executes commands from the "commandList"
   * @param	command		command string
 	* @retval	none
   */
-void parser(char* command){
+void parser(char* command, PWM_Bus motorVertical, PWM_Bus motorHorizontal){
 	char word[128];
 	getWord(command, 0, word);
 
 	
 		//ON
 	if(!strcmp(commandList[0],word)){
-		
+		automaticControl=1;
 }
 	
 		//OFF
 	else if(!strcmp(commandList[1],word)){
-	
+		automaticControl=0;
 }
 	
 		//UP
 	else if(!strcmp(commandList[2],word)){
-		
+		PWMDutyCycle(motorVertical,100);
+		HAL_Delay(500);
+		PWMDutyCycle(motorVertical,0);
 	}
 	
 		//LEFT
 	else if(!strcmp(commandList[3],word)){
-		
+		PWMDutyCycle(motorHorizontal,-100);
+		HAL_Delay(500);
+		PWMDutyCycle(motorHorizontal,0);
 	}
 	
 		//RIGHT
 	else if(!strcmp(commandList[4],word)){
-		
+		PWMDutyCycle(motorHorizontal,100);
+		HAL_Delay(500);
+		PWMDutyCycle(motorHorizontal,0);
 	}
 	
 		//DOWN
 	else if(!strcmp(commandList[5],word)){
-	
+		PWMDutyCycle(motorVertical,-100);
+		HAL_Delay(500);
+		PWMDutyCycle(motorVertical,0);
 	}
-
-
-
-
-
 
 }
 
+int control(void){
+	return automaticControl;
+}

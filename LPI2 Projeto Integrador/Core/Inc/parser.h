@@ -8,6 +8,9 @@
 #include "usart.h"
 #include "gpio.h"
 #include "adc.h"
+#include "pwm.h"
+
+static int automaticControl=1;
 
 static const char* commandList[]=
 	{
@@ -26,9 +29,9 @@ intmax_t getInt(char* command, uint8_t pos);
 
 uint8_t numWords(char* command);
 
-void parser(char* command);	
+void parser(char* command, PWM_Bus motorVertical, PWM_Bus motorHorizontal);	
 
-	
+int control(void);
 	
 #endif
 	

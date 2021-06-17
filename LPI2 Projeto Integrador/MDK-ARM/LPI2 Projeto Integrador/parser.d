@@ -42,3 +42,6 @@ lpi2 projeto integrador\parser.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_
 lpi2 projeto integrador\parser.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
 lpi2 projeto integrador\parser.o: ../Core/Inc/gpio.h
 lpi2 projeto integrador\parser.o: ../Core/Inc/adc.h
+lpi2 projeto integrador\parser.o: ../Core/Inc/pwm.h
+lpi2 projeto integrador\parser.o: ../Core/Inc/tim.h
+lpi2 projeto integrador\parser.o: ../Core/Inc/encoder.h
