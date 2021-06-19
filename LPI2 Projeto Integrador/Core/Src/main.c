@@ -125,7 +125,7 @@ int main(void)
 	PWM_Port MH={&htim1, TIM_CHANNEL_4};
 	
 	GPIO_Port refMV={GPIOA_BASE, GPIO_PIN_0};
-	GPIO_Port refMH={GPIOA_BASE, GPIO_PIN_1};
+	GPIO_Port refMH={GPIOE_BASE, GPIO_PIN_15};
 	
 	PWM_Bus motorVertical={MV, refMV};
 	PWM_Bus motorHorizontal={MH, refMH};
@@ -141,8 +141,7 @@ int main(void)
 		
 		volatile uint16_t valor[2];
 		while(1){
-			valor[0]=analogRead(sensorCima);
-			valor[1]=analogRead(sensorBaixo);
+			PWMDutyCycle(motorHorizontal, 100);
 		}
 		moduloBluetooth(command); 
 		//receber//
