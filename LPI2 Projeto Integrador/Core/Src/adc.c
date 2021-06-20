@@ -146,8 +146,9 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     __HAL_RCC_GPIOA_CLK_ENABLE();
     /**ADC1 GPIO Configuration
     PA0/WKUP     ------> ADC1_IN0
+    PA4     ------> ADC1_IN4
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_0;
+    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_4;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -222,8 +223,9 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 
     /**ADC1 GPIO Configuration
     PA0/WKUP     ------> ADC1_IN0
+    PA4     ------> ADC1_IN4
     */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0);
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0|GPIO_PIN_4);
 
     /* ADC1 interrupt Deinit */
   /* USER CODE BEGIN ADC1:ADC_IRQn disable */
@@ -296,6 +298,12 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 
 
 void analogPinConfig(ADC_Port port){
+	if(port.adcHandle==&hadc1)
+		*((uint32_t*)(0x40012034))=0;
+	if(port.adcHandle==&hadc2)
+		*((uint32_t*)(0x40012134))=0;
+	if(port.adcHandle==&hadc3)
+		*((uint32_t*)(0x40012234))=0;
 	ADC_ChannelConfTypeDef sConfig = {0};
 	sConfig.Channel = port.ADC_Pin;
   sConfig.Rank = ADC_REGULAR_RANK_1;
@@ -307,12 +315,14 @@ void analogPinConfig(ADC_Port port){
 }
 
 uint16_t analogRead(ADC_Port port){
-	analogPinConfig(port);
+	analogPinConfig(port);								//configuração do porto de ADC
 	HAL_ADC_Start(port.adcHandle);
 	if(HAL_ADC_PollForConversion(port.adcHandle, HAL_MAX_DELAY)== HAL_OK){
+		HAL_ADC_Stop(port.adcHandle);
 		return HAL_ADC_GetValue(port.adcHandle);// 0V->0   3.3V->4095	
 	}
 	else{
+		HAL_ADC_Stop(port.adcHandle);
 		return 0;
 	}
 }

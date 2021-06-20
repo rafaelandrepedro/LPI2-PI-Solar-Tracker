@@ -115,8 +115,8 @@ int main(void)
 	encoderInit(&encoder, CLK, DT, 1920*2);
 	
 	//sensores LDR
-	ADC_Port sensorCima={&hadc1, GPIO_PIN_0};
-	ADC_Port sensorBaixo={&hadc3, GPIO_PIN_14};
+	ADC_Port sensorCima={&hadc1, GPIO_PIN_12};
+	ADC_Port sensorBaixo={&hadc1, GPIO_PIN_0};
 	ADC_Port sensorEsq={&hadc1, GPIO_PIN_2};
 	ADC_Port sensorDir={&hadc1, GPIO_PIN_3};
 	
@@ -131,17 +131,18 @@ int main(void)
 	PWM_Bus motorHorizontal={MH, refMH};
   while (1)
   {
-		#define LIMITE_SUPERIOR_LUZ 5
-		#define LIMITE_INFERIOR_LUZ 2
-		#define LIMITE_VELOCIDADE_MAXIMA 6
+		#define LIMITE_SUPERIOR_LUZ 300
+		#define LIMITE_INFERIOR_LUZ 200
+		#define LIMITE_VELOCIDADE_MAXIMA 350
 		
 		#define AUTOMATIC 1
 		
 		#define NOITE 100
 		
 		volatile uint16_t valor[2];
-		while(1){
-			PWMDutyCycle(motorHorizontal, 100);
+		while(1){	//ciclo debug
+			valor[0]=analogRead(sensorCima);
+			valor[1]=analogRead(sensorBaixo);
 		}
 		moduloBluetooth(command); 
 		//receber//
