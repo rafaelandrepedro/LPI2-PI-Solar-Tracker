@@ -15,12 +15,12 @@ static int automaticControl=1;
 static const char* commandList[]=
 	{
 	//[basic gpio]			(0-7)
-	"ON",			//memory read
-	"OFF",
-	"UP",
-	"LEFT",
-	"RIGHT",
-	"DOWN"
+	"A",			//memory read
+	"B",
+	"C",
+	"D",
+	"E",
+	"F"
 	};
 
 void getWord(char* command, uint8_t pos, char* word);
