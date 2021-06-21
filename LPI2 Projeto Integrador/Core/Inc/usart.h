@@ -44,6 +44,7 @@ void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 void init_UART3(void);
+void init_UART2(void);
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart);
 /**
   * @brief  Retrieves bytes from the uart3
