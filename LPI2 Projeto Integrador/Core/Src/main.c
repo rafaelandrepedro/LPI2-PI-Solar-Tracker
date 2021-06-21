@@ -100,13 +100,12 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC1_Init();
   MX_TIM6_Init();
-  MX_ADC2_Init();
-  MX_ADC3_Init();
   MX_TIM1_Init();
   MX_TIM10_Init();
   MX_USART3_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-	
+	init_UART2();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,36 +113,49 @@ int main(void)
 	//encoder motor horizontal
 	encoderInit(&encoder, CLK, DT, 1920*2);
 	
-	//sensores LDR
-	ADC_Port sensorCima={&hadc1, GPIO_PIN_12};
-	ADC_Port sensorBaixo={&hadc1, GPIO_PIN_0};
-	ADC_Port sensorEsq={&hadc1, GPIO_PIN_2};
-	ADC_Port sensorDir={&hadc1, GPIO_PIN_3};
+	//sensores LDR																											pinos de configuração do ADC
+	ADC_Port sensorCima={&hadc1, ADC_CHANNEL_0};
+	ADC_Port sensorBaixo={&hadc1, ADC_CHANNEL_12};
+	ADC_Port sensorEsq={&hadc1, ADC_CHANNEL_9};
+	ADC_Port sensorDir={&hadc1, ADC_CHANNEL_6};
 	
 	//motores
-	PWM_Port MV={&htim1, TIM_CHANNEL_3};
-	PWM_Port MH={&htim1, TIM_CHANNEL_4};
+	PWM_Port MV={&htim1, TIM_CHANNEL_4};
+	PWM_Port MH={&htim1, TIM_CHANNEL_3};
 	
-	GPIO_Port refMV={GPIOA_BASE, GPIO_PIN_0};
-	GPIO_Port refMH={GPIOE_BASE, GPIO_PIN_15};
+	GPIO_Port refMV={GPIOE_BASE, GPIO_PIN_15};
+	GPIO_Port refMH={GPIOE_BASE, GPIO_PIN_0};
 	
 	PWM_Bus motorVertical={MV, refMV};
 	PWM_Bus motorHorizontal={MH, refMH};
   while (1)
   {
-		#define LIMITE_SUPERIOR_LUZ 300
-		#define LIMITE_INFERIOR_LUZ 200
+		#define LIMITE_SUPERIOR_LUZ 600
+		#define LIMITE_INFERIOR_LUZ 100
 		#define LIMITE_VELOCIDADE_MAXIMA 350
 		
 		#define AUTOMATIC 1
 		
-		#define NOITE 100
+		#define NOITE 4000
 		
-		volatile uint16_t valor[2];
-		while(1){	//ciclo debug
-			valor[0]=analogRead(sensorCima);
-			valor[1]=analogRead(sensorBaixo);
-		}
+		volatile uint32_t valor[4];
+		
+//		while(1){
+//			PWMDutyCycle(motorVertical,100);
+//			HAL_Delay(2000);
+//			PWMDutyCycle(motorVertical,-100);
+//			HAL_Delay(2000);
+//		}
+		
+//		while(1){	//ciclo debug
+//			valor[0]=analogRead(sensorCima);
+//			valor[1]=analogRead(sensorBaixo);
+//			valor[2]=analogRead(sensorEsq);
+//			valor[3]=analogRead(sensorDir);
+//		}
+		
+		
+		
 		moduloBluetooth(command); 
 		//receber//
 		if(receve_flag){
@@ -159,10 +171,10 @@ int main(void)
 		}
 
 		if(control()==AUTOMATIC){
-			proportionalControl(sensorBaixo, sensorCima, sensorEsq, sensorDir, motorHorizontal, motorVertical,LIMITE_INFERIOR_LUZ, LIMITE_SUPERIOR_LUZ, LIMITE_VELOCIDADE_MAXIMA);
+			onOffControl(sensorBaixo, sensorCima, sensorEsq, sensorDir, motorHorizontal, motorVertical,LIMITE_INFERIOR_LUZ, LIMITE_SUPERIOR_LUZ);
 		}
 		
-		if(averageLight(sensorBaixo, sensorCima, sensorEsq, sensorDir)<NOITE){
+		if(averageLight(sensorBaixo, sensorCima, sensorEsq, sensorDir)>NOITE){
 			resetControl(encoder, motorHorizontal, LIMITE_INFERIOR_LUZ);
 		}
     /* USER CODE END WHILE */
@@ -221,7 +233,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3;
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_USART3;
+  PeriphClkInitStruct.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
   PeriphClkInitStruct.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
