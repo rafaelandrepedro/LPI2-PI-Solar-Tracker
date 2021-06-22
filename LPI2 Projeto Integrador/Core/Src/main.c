@@ -139,23 +139,7 @@ int main(void)
 		
 		#define NOITE 4000
 		
-		volatile uint32_t valor[4];
-		
-//		while(1){
-//			PWMDutyCycle(motorVertical,100);
-//			HAL_Delay(2000);
-//			PWMDutyCycle(motorVertical,-100);
-//			HAL_Delay(2000);
-//		}
-		
-//		while(1){	//ciclo debug
-//			valor[0]=analogRead(sensorCima);
-//			valor[1]=analogRead(sensorBaixo);
-//			valor[2]=analogRead(sensorEsq);
-//			valor[3]=analogRead(sensorDir);
-//		}
-		
-		
+		volatile uint32_t valor[4];		
 		
 		moduloBluetooth(command); 
 		//receber//
