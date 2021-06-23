@@ -130,7 +130,6 @@ int main(void)
 	PWM_Bus motorHorizontal={MH, refMH};
   while (1)
   {
-		printf("teste");
 		#define LIMITE_SUPERIOR_LUZ 600
 		#define LIMITE_INFERIOR_LUZ 100
 		#define LIMITE_VELOCIDADE_MAXIMA 350
